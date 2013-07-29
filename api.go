@@ -1,10 +1,8 @@
 package wbdata
 
 import (
-	"encoding/xml"
-	"io/ioutil"
+	"encoding/json"
 	"log"
-	"net/http"
 )
 
 const (
@@ -13,66 +11,61 @@ const (
 	countriesUrl = baseUrl + "/countries"
 )
 
-type Wbdata struct{}
-
-type Source struct {
-	Name        string `xml:"name"`
-	Description string `xml:"description"`
-	Url         string `xml:"url"`
+type DataSources struct {
+	Page    string
+	Pages   string
+	PerPage string
+	Total   string
 }
 
-type Sources struct {
-	XMLName    xml.Name `xml"sources"`
-	SourceList []Source `xml:"source"`
+type Source struct {
+	Name string
 }
 
 type Country struct {
-	Name        string `xml:"name"`
-	CapitalCity string `xml:"capitalCity"`
+	Name        string
+	CapitalCity string
 }
 
-type Countries struct {
-	XMLName     xml.Name  `xml"countries"`
-	CountryList []Country `xml:"country"`
+type CountriesSource struct {
+	Page    int
+	Pages   int
+	PerPage string
+	Total   int
 }
 
-func GetSources() (*Sources, error) {
-	resp, err := http.Get(sourcesUrl)
+func GetSources() []Source {
+	ds := DataSources{}
+	s := []Source{}
+
+	body, err := FetchUrl(sourcesUrl)
+
 	if err != nil {
+		log.Fatalf("error fetching url %v", err)
+	}
+
+	if err := json.Unmarshal(body, &[]interface{}{&ds, &s}); err != nil {
 		log.Fatalf("error %v", err)
-		return nil, err
 	}
 
-	defer resp.Body.Close()
-	s := new(Sources)
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		log.Print(err)
-		return nil, err
-	}
-	//log.Printf("body %v", string(body))
-
-	xml.Unmarshal(body, &s)
-	return s, nil
+	return s
 
 }
 
-func GetCountries() (*Countries, error) {
-	resp, err := http.Get(countriesUrl)
+func GetCountries() []Country {
+	cs := CountriesSource{}
+	cn := []Country{}
+
+	body, err := FetchUrl(countriesUrl)
+
 	if err != nil {
+		log.Fatalf("error fetching url %v", err)
+	}
+
+	if err := json.Unmarshal(body, &[]interface{}{&cs, &cn}); err != nil {
 		log.Fatalf("error %v", err)
-		return nil, err
 	}
 
-	defer resp.Body.Close()
-	c := new(Countries)
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		log.Print(err)
-		return nil, err
-	}
-	//log.Printf("body %v", string(body))
+	return cn
 
-	xml.Unmarshal(body, &c)
-	return c, nil
 }
