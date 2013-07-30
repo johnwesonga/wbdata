@@ -28,6 +28,7 @@ const (
 	defaultBaseURL = "http://api.worldbank.org"
 )
 
+// A Client manages communication with the World Bank Open Data API.
 type Client struct {
 	client *http.Client
 
@@ -47,6 +48,11 @@ func NewClient() *Client {
 	return c
 }
 
+// NewRequest creates an API request. A relative URL can be provided in urlStr,
+// in which case it is resolved relative to the BaseURL of the Client.
+// Relative URLs should always be specified without a preceding slash.  If
+// specified, the value pointed to by body is JSON encoded and included as the
+// request body.
 func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
 	v := url.Values{}
 	v.Set("format", "json")
@@ -77,6 +83,9 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	return req, nil
 }
 
+// Do sends an API request and returns the API response.  The API response is
+// decoded and stored in the value pointed to by v, or returned as an error if
+// an API error has occurred.
 func (c *Client) Do(req *http.Request, v *[]interface{}) (*http.Response, error) {
 	resp, err := c.client.Do(req)
 	if err != nil {
