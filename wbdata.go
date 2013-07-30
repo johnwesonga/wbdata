@@ -1,3 +1,9 @@
+/*
+Package wbdata provides a client for using the World Bank Open Data API.
+
+The full World Bank Open Data API is documented at http://data.worldbank.org/developers/api-overview.
+*/
+
 package wbdata
 
 import (

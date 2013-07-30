@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+// CountryService provides access to the event related functions
+// in the World Bank Open Data API.
+//
+// World Bank Open Data API docs: http://data.worldbank.org/node/18
 type CountryService struct {
 	client *Client
 }
