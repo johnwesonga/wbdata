@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// CountryService provides access to the event related functions
+// CountryService provides access to the countries related queries
 // in the World Bank Open Data API.
 //
 // World Bank Open Data API docs: http://data.worldbank.org/node/18

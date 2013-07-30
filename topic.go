@@ -1,5 +1,9 @@
 package wbdata
 
+// TopicsService provides access to the topic sources queries
+// in the World Bank Open Data API.
+//
+// World Bank Open Data API docs: http://data.worldbank.org/node/209
 type TopicsService struct {
 	client *Client
 }

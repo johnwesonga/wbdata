@@ -1,5 +1,9 @@
 package wbdata
 
+// SourcesService provides access to the catalog sources queries
+// in the World Bank Open Data API.
+//
+// World Bank Open Data API docs: http://data.worldbank.org/node/210
 type SourcesService struct {
 	client *Client
 }
