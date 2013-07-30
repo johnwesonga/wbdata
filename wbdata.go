@@ -11,7 +11,6 @@ services:
 
 The full World Bank Open Data API is documented at http://data.worldbank.org/developers/api-overview.
 */
-
 package wbdata
 
 import (
