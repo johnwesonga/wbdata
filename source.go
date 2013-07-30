@@ -18,7 +18,7 @@ type Source struct {
 	Url         string
 }
 
-func (s *SourcesList) GetSources() ([]Source, error) {
+func (s *SourcesService) GetSources() ([]Source, error) {
 	sourceHeader := SourceHeader{}
 	source := []Source{}
 
