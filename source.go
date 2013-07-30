@@ -1,6 +1,6 @@
 package wbdata
 
-type SourcesList struct {
+type SourcesService struct {
 	client *Client
 }
 

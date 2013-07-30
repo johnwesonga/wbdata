@@ -20,7 +20,10 @@ type Client struct {
 	BaseURL *url.URL
 
 	//Services to talk to different APIs
-	Countries *CountryService
+	Countries  *CountryService
+	Sources    *SourcesService
+	Topics     *TopicsService
+	Indicators *IndicatorService
 }
 
 func NewClient() *Client {
