@@ -1,5 +1,5 @@
 
-Copyright (c) 2013, johnwesonga
+Copyright (c) 2013, wbdata AUTHORS.
 All rights reserved.
 
 
