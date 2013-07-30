@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// CountryService provides access to the Indicator related queries
+// Indicator provides access to the Indicator related queries
 // in the World Bank Open Data API.
 //
 // World Bank Open Data API docs: http://data.worldbank.org/node/203
