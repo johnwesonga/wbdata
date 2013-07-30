@@ -20,10 +20,10 @@ type Country struct {
 }
 
 type CountryHeader struct {
-	Page    int
-	Pages   int
-	PerPage string
-	Total   int
+	page    int
+	pages   int
+	perpage string
+	total   int
 }
 
 type CountryListOptions struct {

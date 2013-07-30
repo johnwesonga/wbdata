@@ -24,6 +24,7 @@ import (
 )
 
 const (
+	libraryVersion = "0.1"
 	defaultBaseURL = "http://api.worldbank.org"
 )
 
