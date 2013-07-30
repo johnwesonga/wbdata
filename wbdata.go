@@ -1,6 +1,14 @@
 /*
 Package wbdata provides a client for using the World Bank Open Data API.
 
+Access different parts of the World Bank Open Data API using the various
+services:
+         client := wbdata.NewClient(nil)
+
+         // list all countries
+         countries, err := client.Countries.GetCountries()
+
+
 The full World Bank Open Data API is documented at http://data.worldbank.org/developers/api-overview.
 */
 
