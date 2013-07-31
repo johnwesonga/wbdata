@@ -96,6 +96,11 @@ func (c *Client) Do(req *http.Request, v *[]interface{}) (*http.Response, error)
 
 	body, err := ioutil.ReadAll(resp.Body)
 
+	err = CheckResponse(resp)
+	if err != nil {
+		return resp, err
+	}
+
 	if v != nil {
 		//err = json.NewDecoder(resp.Body).Decode(v)
 		err = json.Unmarshal(body, v)
@@ -104,19 +109,30 @@ func (c *Client) Do(req *http.Request, v *[]interface{}) (*http.Response, error)
 	return resp, err
 }
 
+// ErrorResponse from the API.
+// {"message":
+//  [{"id":"120","key":"Parameter 'country' has an invalid value","value":"The provided parameter value is not valid"}]]
 type ErrorResponse struct {
-	Response *http.Response // HTTP response that caused this error
-	Message  string         `json:message` // error message
+	Message []struct {
+		Id    string
+		Key   string
+		Value string
+	}
 }
 
 func (r *ErrorResponse) Error() string {
-	return fmt.Sprintf("%v %v: %d %+v",
-		r.Response.Request.Method, r.Response.Request.URL,
-		r.Response.StatusCode, r.Message)
+	return fmt.Sprintf("%+v", r.Message)
 }
 
 func CheckResponse(r *http.Response) error {
-	errorResponse := &ErrorResponse{Response: r}
+	if c := r.StatusCode; 200 <= c && c <= 299 {
+		return nil
+	}
+	errorResponse := &ErrorResponse{}
+	data, err := ioutil.ReadAll(r.Body)
+	if err != nil && data != nil {
+		json.Unmarshal(data, errorResponse)
+	}
 	return errorResponse
 
 }
