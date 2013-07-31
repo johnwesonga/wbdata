@@ -45,6 +45,9 @@ func NewClient() *Client {
 	baseURL, _ := url.Parse(defaultBaseURL)
 	c := &Client{client: http.DefaultClient, BaseURL: baseURL}
 	c.Countries = &CountryService{client: c}
+	c.Sources = &SourcesService{client: c}
+	c.Topics = &TopicsService{client: c}
+	c.Indicators = &IndicatorService{client: c}
 	return c
 }
 
@@ -64,6 +67,7 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 
 	u := c.BaseURL.ResolveReference(rel)
 
+	// the API expects URL+resource?format=json
 	url := fmt.Sprintf("%s?%s", u, v.Encode())
 	log.Println(url)
 
@@ -124,6 +128,11 @@ func (r *ErrorResponse) Error() string {
 	return fmt.Sprintf("%+v", r.Message)
 }
 
+// CheckResponse checks the API response for errors, and returns them if
+// present.  A response is considered an error if it has a status code outside
+// the 200 range.  API error responses are expected to have either no response
+// body, or a JSON response body that maps to ErrorResponse.  Any other
+// response body will be silently ignored.
 func CheckResponse(r *http.Response) error {
 	if c := r.StatusCode; 200 <= c && c <= 299 {
 		return nil
