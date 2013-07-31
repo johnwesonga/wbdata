@@ -33,7 +33,7 @@ type CountryListOptions struct {
 
 // GetSources retrives Catalog Data Sources from the World Bank API
 // It return s a slice of Source
-func (c *CountryService) GetCountries() ([]Country, error) {
+func (c *CountryService) ListCountries() ([]Country, error) {
 	countryHeader := CountryHeader{}
 	country := []Country{}
 

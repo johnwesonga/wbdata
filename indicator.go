@@ -19,7 +19,7 @@ type Indicator struct {
 	SourceNote string
 }
 
-func (i *IndicatorService) GetIndicators() ([]Indicator, error) {
+func (i *IndicatorService) ListIndicators() ([]Indicator, error) {
 	indicator := []Indicator{}
 
 	req, err := i.client.NewRequest("GET", "indicators", nil)
