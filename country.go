@@ -31,8 +31,7 @@ type CountryListOptions struct {
 	PerPage int
 }
 
-// GetSources retrives Catalog Data Sources from the World Bank API
-// It return s a slice of Source
+// ListCountries list all the countries
 func (c *CountryService) ListCountries() ([]Country, error) {
 	countryHeader := CountryHeader{}
 	country := []Country{}
@@ -47,6 +46,8 @@ func (c *CountryService) ListCountries() ([]Country, error) {
 	return country, err
 }
 
+// GetCountry Return entity data for particular country
+// with ISO 3166-1 alpha-2 code “BR” (ISO 3166-1 alpha-3 code "BRA" can be used in place of alpha-2 code)
 func (c *CountryService) GetCountry(countryId string) ([]Country, error) {
 	countryHeader := CountryHeader{}
 	country := []Country{}

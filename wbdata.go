@@ -35,10 +35,11 @@ type Client struct {
 	BaseURL *url.URL
 
 	//Services to talk to different APIs
-	Countries  *CountryService
-	Sources    *SourcesService
-	Topics     *TopicsService
-	Indicators *IndicatorService
+	Countries    *CountryService
+	Sources      *SourcesService
+	Topics       *TopicsService
+	Indicators   *IndicatorService
+	IncomeLevels *IncomeLevelService
 }
 
 func NewClient() *Client {
@@ -48,6 +49,7 @@ func NewClient() *Client {
 	c.Sources = &SourcesService{client: c}
 	c.Topics = &TopicsService{client: c}
 	c.Indicators = &IndicatorService{client: c}
+	c.IncomeLevels = &IncomeLevelService{client: c}
 	return c
 }
 

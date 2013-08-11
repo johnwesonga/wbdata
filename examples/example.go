@@ -9,7 +9,7 @@ func main() {
 
 	client := wbdata.NewClient()
 
-	countries, err := client.Countries.GetCountries()
+	countries, err := client.Countries.ListCountries()
 	if err != nil {
 		fmt.Printf("error: %v\n\n", err)
 	}
@@ -23,5 +23,11 @@ func main() {
 		fmt.Printf("error: %v\n\n", err)
 	}
 	fmt.Println(country)
+
+	incomelevels, err := client.IncomeLevels.ListIncomeLevels()
+	if err != nil {
+		fmt.Printf("error: %v\n\n", err)
+	}
+	fmt.Println(incomelevels)
 
 }
