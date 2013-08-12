@@ -102,16 +102,13 @@ func (c *Client) Do(req *http.Request, v *[]interface{}) (*http.Response, error)
 
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
-
 	err = CheckResponse(resp)
 	if err != nil {
 		return resp, err
 	}
 
 	if v != nil {
-		//err = json.NewDecoder(resp.Body).Decode(v)
-		err = json.Unmarshal(body, v)
+		err = json.NewDecoder(resp.Body).Decode(v)
 	}
 
 	return resp, err

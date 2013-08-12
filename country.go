@@ -20,6 +20,10 @@ type Country struct {
 	Region              Region
 	IncomeLevel         IncomeLevel
 	LendingType         LendingType
+	AdminRegion         struct {
+		Id    string
+		Value string
+	}
 }
 
 type Region struct {

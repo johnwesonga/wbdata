@@ -24,6 +24,10 @@ func main() {
 	}
 	fmt.Println(country)
 
+	for _, v := range country {
+		fmt.Println(v.Region)
+	}
+
 	incomelevels, err := client.IncomeLevels.ListIncomeLevels()
 	if err != nil {
 		fmt.Printf("error: %v\n\n", err)
