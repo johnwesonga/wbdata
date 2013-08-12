@@ -14,10 +14,10 @@ type IncomeLevel struct {
 }
 
 type IncomeLevelHeader struct {
-	page    int
-	pages   int
+	page    string
+	pages   string
 	perpage string
-	total   int
+	total   string
 }
 
 func (i *IncomeLevelService) ListIncomeLevels() ([]IncomeLevel, error) {

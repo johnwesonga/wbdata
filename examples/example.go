@@ -29,5 +29,8 @@ func main() {
 		fmt.Printf("error: %v\n\n", err)
 	}
 	fmt.Println(incomelevels)
+	for _, v := range incomelevels {
+		fmt.Printf("%v ", v)
+	}
 
 }

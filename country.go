@@ -17,6 +17,14 @@ type Country struct {
 	CapitalCity         string
 	Iso2Code            string
 	Longitude, Latitude string
+	Region              Region
+	IncomeLevel         IncomeLevel
+	LendingType         LendingType
+}
+
+type Region struct {
+	Id    string
+	Value string
 }
 
 type CountryHeader struct {
