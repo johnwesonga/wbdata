@@ -40,6 +40,7 @@ type Client struct {
 	Topics       *TopicsService
 	Indicators   *IndicatorService
 	IncomeLevels *IncomeLevelService
+	LendingTypes *LendingTypeService
 }
 
 func NewClient() *Client {
@@ -50,6 +51,7 @@ func NewClient() *Client {
 	c.Topics = &TopicsService{client: c}
 	c.Indicators = &IndicatorService{client: c}
 	c.IncomeLevels = &IncomeLevelService{client: c}
+	c.LendingTypes = &LendingTypeService{client: c}
 	return c
 }
 

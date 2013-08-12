@@ -4,7 +4,7 @@
 World Bank Open data API for Go
 
 Find and request information from the
-World Bank Open Data API.
+World Bank Open Data API http://data.worldbank.org/
 
 
 ## Usage ##
@@ -19,5 +19,5 @@ countries:
 
 ```go
 client := wbdata.NewClient(nil)
-countries, err := client.Countries.GetCountries()
+countries, err := client.Countries.ListCountries()
 ```
